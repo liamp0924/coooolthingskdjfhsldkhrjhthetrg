@@ -1,0 +1,39 @@
+html{
+    background-color: rgb(12, 12, 12);
+}
+
+header{
+    color: white;
+    font-family: Montserrat;
+    font-size: x-large;
+}
+
+#h3-header{
+    color: white;
+    font-family: Montserrat;
+}
+#pics{
+    color: white;
+    font-family: Montserrat;
+}
+#google{
+    font-size: medium;
+    color: white;
+    font-family: Montserrat;
+}
+#V1{
+    color: white;
+    font-family: Montserrat;
+}
+#V2{
+    color: white;
+    font-family: Montserrat;
+}
+#V3{
+    color: white;
+    font-family: Montserrat;
+}
+
+a {
+    color: inherit;
+  }

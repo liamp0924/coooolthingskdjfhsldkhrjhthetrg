@@ -1,0 +1,26 @@
+html{
+    background-color: rgb(12, 12, 12);
+}
+
+header{
+    color: white;
+    font-family: Montserrat;
+    font-size: x-large;
+}
+
+#first{
+    color: white;
+    font-family: Montserrat;
+}
+#second{
+    color: white;
+    font-family: Montserrat;
+}
+#third{
+    color: white;
+    font-family: Montserrat;
+}
+
+a {
+    color: inherit;
+  }
