@@ -1,0 +1,20 @@
+html{
+    background-color: rgb(12, 12, 12);
+}
+
+header{
+    color: white;
+    font-family: Montserrat;
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+#Tiktok{
+    color: rgb(111, 0, 255);
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+a {
+    color: inherit;
+  }
