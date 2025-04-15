@@ -34,6 +34,21 @@ h2{
     font-family: Montserrat;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: Montserrat;
+    font-size: 14px;
+}
+
+
+
+
 a {
     color: inherit;
   }
