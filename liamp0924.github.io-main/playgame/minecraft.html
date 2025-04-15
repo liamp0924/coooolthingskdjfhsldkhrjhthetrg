@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
   <link rel="stylesheet" href="/CSS/gamepage.css">
+    <script>
+      function openGame() {
+        window.open("/gameassets/erasebox/minecraft/javascript/index.html", "_blank");
+      }
+    </script>
     <center> 
         <h4>
           <a id="return" href="/index.html">return to homepage</a>
         </h4>
         <br><br>
         <header><h4>Minecraft 1.12</h4></header><br>
-        <h4 id="header4">Mojang</h4><br><br>
+        <h4 id="header4">Mojang</h4>
+        <h5 id="h4m">*the game does save your data btw*</h5>
 
-        <iframe src="/gameassets/erasebox/minecraft/javascript/index.html"  height="500" width="50%">
+
+        <h2>This game is pissy and dosent let you type unless you load it manually. Press the button below to put it in fullscreen.</h2>
+
+        <br>
+
+        <button class="launch-button" onclick="openGame()">Launch Game</button>
     </center>
 </html>

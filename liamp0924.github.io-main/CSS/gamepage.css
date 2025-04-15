@@ -2,6 +2,17 @@ html{
     background-color: rgb(12, 12, 12);
 }
 
+h2{
+    color: white;
+    font-family: Montserrat;
+}
+
+#h4m{
+    color: white;
+    opacity: 0.5;
+    font-family: Montserrat;
+}
+
 header{
     color: white;
     font-family: Montserrat;
@@ -20,3 +31,22 @@ header{
 a{
     color: inherit;
 }
+
+
+.launch-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Montserrat;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+  
+  .launch-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
