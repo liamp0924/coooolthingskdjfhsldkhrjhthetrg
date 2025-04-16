@@ -5,28 +5,34 @@ html{
 header{
     color: white;
     font-family: Montserrat;
-    font-size: xx-large;
+    font-size: large;
     font-weight: 500;
 }
 
-#Slope{
-    color: green;
+#mariokart{
+    color: red;
     font-family: Montserrat;
-    font-weight: 500;
-}
-
-#Baldis-Bacics{
-    color: rgb(0, 255, 0);
-    font-family: Montserrat;
-    font-weight: 500;
-}
-
-#Minecraft112{
-color: rgb(31, 23, 13);
-font-family: Montserrat;
-    font-weight: 500;
 }
 
 a {
     color: inherit;
   }
+
+
+.launch-button {
+background-color: #4CAF50;
+color: white;
+padding: 12px 24px;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+font-family: Montserrat;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.launch-button:hover {
+background-color: #45a049;
+transform: scale(1.05);
+}

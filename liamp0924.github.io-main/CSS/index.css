@@ -21,6 +21,11 @@ header{
     font-family: Montserrat;
 }
 
+#ChangeLog{
+    color: white;
+    font-family: Montserrat;
+}
+
 #history{
     color: white;
     font-family: Montserrat;
@@ -30,6 +35,11 @@ header{
     font-family: Montserrat;
 }
 h2{
+    color: white;
+    font-family: Montserrat;
+}
+
+h1{
     color: white;
     font-family: Montserrat;
 }
