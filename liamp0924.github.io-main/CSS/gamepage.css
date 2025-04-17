@@ -33,20 +33,24 @@ a{
 }
 
 
-.launch-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: Montserrat;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  }
-  
-  .launch-button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-  }
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.mc-button {
+  background-color: #4caf50;
+  border: 4px solid #2e7d32;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  padding: 12px 24px;
+  text-shadow: 2px 2px #2e7d32;
+  border-radius: 0; 
+  cursor: pointer;
+  box-shadow: 0 8px #2e7d32;
+  transition: all 0.1s ease-in-out;
+}
+
+.mc-button:hover {
+  background-color: #66bb6a;
+  box-shadow: 0 4px #2e7d32;
+  transform: translateY(2px);
+}

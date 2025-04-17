@@ -22,9 +22,15 @@ header{
 }
 
 #Minecraft112{
-color: rgb(31, 23, 13);
+color: rgb(187, 112, 0);
 font-family: Montserrat;
     font-weight: 500;
+}
+
+#FNAF1{
+color: rgb(65, 37, 0);
+font-family: Montserrat;
+    font-weight: 600;
 }
 
 #mariokart{

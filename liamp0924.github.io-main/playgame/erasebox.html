@@ -5,6 +5,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <body>
       <link rel="stylesheet" href="/CSS/gamepage.css">
+      <script>
+        fetch("components/nav.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          });
+    </script>
+    <link rel="stylesheet" href="/CSS/index.css">
     </body>
     <center>
         <h4>
@@ -19,4 +27,5 @@
 
         <iframe src="/gameassets/erasebox/slope/index.html" height="600" width="80%">
     </center>
+    <div id="navbar-placeholder"></div>
 </html>

@@ -5,6 +5,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <head>
+    <script>
+        fetch("components/nav.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          });
+    </script>
+    <link rel="stylesheet" href="/CSS/index.css">
     <center>
         <span>
             <header>
@@ -28,6 +36,11 @@
 <h2> Version 1.3 </h2>
 <hr>
 <h1> Added, Mario Kart DS, Game Selection Section, included with GSS, Emulator Games, And this cool little Change Log Right Here!</h1>
+<hr>
+<h2> Version 1.5 </h2>
+<hr>
+<h1> Added, FNAF 1, A whole new home page revamp, and this cool little nav bar down here ↓</h1>
     
 </body>
+<div id="navbar-placeholder"></div>
 </html>

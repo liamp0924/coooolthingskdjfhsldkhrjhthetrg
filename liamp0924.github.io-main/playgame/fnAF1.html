@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <body>
+      <link rel="stylesheet" href="/CSS/gamepage.css">
+      <script>
+        fetch("components/nav.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+          });
+      </script>
+    </body>
+    <center>
+        <h4>
+            <a id="return" href="/index.html">return to homepage</a>
+        </h4>
+        <br><br>
+        <header><h1>FNAF 1</h1></header>
+        <br>
+        <h4 id="header4">Made by Scott Cawthon</h4>
+        <br>
+        <br>
+
+        <iframe src="/gameassets/erasebox/1/index.html" height="800" width="80%">
+    </center>
+    <div id="navbar-placeholder"></div>
+</html>

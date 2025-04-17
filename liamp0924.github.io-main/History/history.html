@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            fetch("/components/nav.html")
+              .then(res => res.text())
+              .then(data => {
+                document.getElementById("navbar-placeholder").innerHTML = data;
+              });
+        </script>
+        <link rel="stylesheet" href="/CSS/index.css">
         <link rel="stylesheet" href="/CSS/history.css">
         <header>
             <h1 id="header">The history of IUG</h1>
@@ -28,6 +36,7 @@
        <br>
        <a id="V3" href="V3.html">V3</a>
     </head>
+    <div id="navbar-placeholder"></div>
 
     <body>
         
