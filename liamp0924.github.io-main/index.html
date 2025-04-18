@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <p class="footer-top">Version 1.5.2, Made By Liam P.</p>
+    <p class="footer-top">Version 1.6.1, Made By Liam P.</p>
     <meta charset="UTF-8" />
     <title>IUG V5</title>
 
@@ -35,5 +35,25 @@
       <h2 id="red">ALPHA STATE,</h2>
       <h2>don't think this website will be fully finished in a day, I'm manually coding this so it will take a long time.</h2>
     </section>
+    <div class="suggestion-wrapper">
+      <h2 class="dropdown-toggle">📬 Suggest a Game! ▼</h2>
+      <div class="suggestion-box hidden">
+        <iframe src="https://forms.gle/DWEHKdHtzUw9jyoF8" 
+                width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">
+          Loading…
+        </iframe>
+      </div>
+    </div>
+    <script>
+      const toggle = document.querySelector('.dropdown-toggle');
+      const box = document.querySelector('.suggestion-box');
+    
+      toggle.addEventListener('click', () => {
+        box.classList.toggle('hidden');
+        toggle.innerHTML = box.classList.contains('hidden')
+          ? '📬 Suggest a Game! ▼'
+          : '📬 Suggest a Game! ▲';
+      });
+    </script>
   </body>
 </html>
