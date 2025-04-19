@@ -1,0 +1,32 @@
+<h2>People Directory</h2>
+<div id="people-list" style="display: flex; flex-wrap: wrap; gap: 20px;"></div>
+
+<script>
+  fetch('/api/users')
+    .then(res => res.json())
+    .then(users => {
+      const list = document.getElementById('people-list');
+      users.forEach(user => {
+        const card = document.createElement('div');
+        card.style.border = '1px solid #ccc';
+        card.style.borderRadius = '10px';
+        card.style.padding = '10px';
+        card.style.textAlign = 'center';
+        card.style.width = '120px';
+
+        const img = document.createElement('img');
+        img.src = user.avatar;
+        img.alt = user.username;
+        img.style.width = '80px';
+        img.style.height = '80px';
+        img.style.borderRadius = '50%';
+
+        const name = document.createElement('p');
+        name.textContent = user.username;
+
+        card.appendChild(img);
+        card.appendChild(name);
+        list.appendChild(card);
+      });
+    });
+</script>
