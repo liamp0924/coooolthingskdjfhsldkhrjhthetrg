@@ -21,26 +21,83 @@
 
     <body>
         <center>
-            <a id="Slope" href="playgame/erasebox.html">Slope</a>
+            <div class="game-card" data-game="Slope" data-link="playgame/erasebox.html">
+                <a id="Slope" href="playgame/erasebox.html">Slope</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
             <br>
             <br>
-            <a id="Baldis-Bacics" href="playgame/baldi.html">Baldis-Bacics</a>
+            <div class="game-card" data-game="Baldis Bacics" data-link="playgame/baldi.html">
+                <a id="Baldis-Bacics" href="playgame/baldi.html">Baldis-Bacics</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
             <br>
             <br>
-            <a id="Minecraft112" href="playgame/minecraft.html">Minecraft 1.12</a>
+            <div class="game-card" data-game="Minecraft 1.12" data-link="playgame/minecraft.html">
+                <a id="Minecraft112" href="playgame/minecraft.html">Minecraft 1.12</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
             <br>
             <br>
-            <a id="FNAF1" href="playgame/fnAF1.html">FNAF 1</a>
+            <div class="game-card" data-game="FNAF 1" data-link="playgame/fnAF1.html">
+                <a id="FNAF1" href="playgame/fnAF1.html">FNAF 1</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
             <br>
             <br>
-            <a id="basket-random" href="playgame/basketball-random.html">Basketball Random</a>
+            <div class="game-card" data-game="Basketball Random" data-link="playgame/basketball-random.html">
+                <a id="basket-random" href="playgame/basketball-random.html">Basketball Random</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
             <br>
             <br>
-            <a id="adanceoffireandice" href="playgame/dance-of-fire.html">A Dance Of Fire And Ice</a>
+            <div class="game-card" data-game="A Dance Of Fire And Ice" data-link="playgame/dance-of-fire.html">
+                <a id="adanceoffireandice" href="playgame/dance-of-fire.html">A Dance Of Fire And Ice</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
             <br>
             <br>
-            <a id="basketstars" href="playgame/basketballstarts.html">Basketball Stars</a>
+            <div class="game-card" data-game="Basketball Stars" data-link="playgame/basketballstarts.html">
+                <a id="basketstars" href="playgame/basketballstarts.html">Basketball Stars</a>
+                <button class="star-btn" aria-label="Star this game"></button>
+            </div>
         </center>
         <div id="navbar-placeholder"></div>
+        <script>
+            const starButtons = document.querySelectorAll('.star-btn');
+          
+            starButtons.forEach(btn => {
+              const card = btn.closest('.game-card');
+              const game = {
+                name: card.dataset.game,
+                link: card.dataset.link
+              };
+          
+              let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+          
+              const isFavorited = () => favorites.some(g => g.name === game.name);
+          
+              // Set initial state
+              btn.classList.toggle('starred', isFavorited());
+          
+              btn.addEventListener('click', () => {
+                favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+          
+                if (isFavorited()) {
+                  favorites = favorites.filter(g => g.name !== game.name);
+                  btn.classList.remove('starred');
+                } else {
+                  favorites.push(game);
+                  btn.classList.add('starred');
+                }
+          
+                // Trigger animation class
+                btn.classList.add('bump');
+                setTimeout(() => btn.classList.remove('bump'), 200);
+          
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+              });
+            });
+        </script>
     </body>
 </html>

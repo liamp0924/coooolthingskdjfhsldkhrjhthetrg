@@ -59,3 +59,38 @@ font-family: Montserrat;
 a {
     color: inherit;
   }
+
+
+
+
+
+
+.star-btn {
+background: none;
+border: none;
+width: 32px;
+height: 32px;
+cursor: pointer;
+position: relative;
+font-size: 0; /* hide any default text */
+}
+
+.star-btn::after {
+content: "⭐";
+font-size: 24px;
+color: gold;
+display: block;
+transition: transform 0.2s ease, content 0.3s ease;
+}
+
+/* Starred state */
+.star-btn.starred::after {
+content: "🌟";
+}
+
+/* Click animation */
+.star-btn.bump::after {
+transform: scale(1.5);
+}
+  
+  

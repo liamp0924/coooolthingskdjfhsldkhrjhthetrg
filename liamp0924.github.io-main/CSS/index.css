@@ -31,7 +31,7 @@ header{
     font-family: Montserrat;
 }
 #red{
-    color: red;
+    color: orange;
     font-family: Montserrat;
 }
 h2{
@@ -153,3 +153,66 @@ pointer-events: none;
 body {
     padding-bottom: 70px; 
 }
+
+
+
+#favorite-section {
+text-align: center;
+margin-top: 40px;
+color: white;
+}
+
+#favorite-list {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+}
+
+.fav-game-card {
+background-color: #2c2c2c;
+padding: 15px;
+border-radius: 10px;
+width: 160px;
+box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+border: 2px solid gold;
+}
+
+.play-btn {
+display: inline-block;
+margin-top: 10px;
+padding: 6px 12px;
+background-color: #4caf50;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+transition: background-color 0.2s;
+}
+
+.play-btn:hover {
+background-color: #388e3c;
+}
+
+
+.remove-fav {
+position: absolute;
+top: 6px;
+right: 6px;
+background: transparent;
+border: none;
+color: #ff4d4d;
+font-size: 16px;
+cursor: pointer;
+}
+
+.fav-game-card {
+position: relative;
+background-color: #2c2c2c;
+padding: 15px;
+border-radius: 10px;
+width: 160px;
+box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+border: 2px solid gold;
+}
+  
+  

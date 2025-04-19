@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <p class="footer-top">Version 1.6.1, Made By Liam P.</p>
+    <p class="footer-top">Version 1.7, Made By Liam P. (help coding this is torture)</p>
     <meta charset="UTF-8" />
     <title>IUG V5</title>
 
@@ -31,10 +31,19 @@
     <div id="navbar-placeholder"></div>
 
     <section style="text-align: center;">
-      <h2>This website is in</h2>
-      <h2 id="red">ALPHA STATE,</h2>
+      <h2>This website is</h2>
+      <h2 id="red">Nearly Polished,</h2>
       <h2>don't think this website will be fully finished in a day, I'm manually coding this so it will take a long time.</h2>
     </section>
+
+
+    <div id="favorite-section">
+      <h2>⭐ Your Favorite Games</h2>
+      <div id="favorite-list"></div>
+    </div>
+
+
+
     <div class="suggestion-wrapper">
       <h2 class="dropdown-toggle">📬 Suggest a Game! ▼</h2>
       <div class="suggestion-box hidden">
@@ -55,5 +64,37 @@
           : '📬 Suggest a Game! ▲';
       });
     </script>
+    <script>
+      function loadFavorites() {
+        const favoriteGames = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const favList = document.getElementById('favorite-list');
+    
+        if (favoriteGames.length === 0) {
+          favList.innerHTML = "<p>You haven't starred any games yet.</p>";
+        } else {
+          favList.innerHTML = favoriteGames.map((game, index) => `
+            <div class="fav-game-card" data-index="${index}">
+              <button class="remove-fav">❌</button>
+              <h4>${game.name}</h4>
+              <a href="${game.link}" class="play-btn">Play</a>
+            </div>
+          `).join('');
+    
+          // Add event listeners to remove buttons
+          document.querySelectorAll('.remove-fav').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const index = btn.closest('.fav-game-card').dataset.index;
+              const current = JSON.parse(localStorage.getItem('favorites') || '[]');
+              current.splice(index, 1);
+              localStorage.setItem('favorites', JSON.stringify(current));
+              loadFavorites(); // Re-render
+            });
+          });
+        }
+      }
+    
+      // Initial load
+      loadFavorites();
+    </script>    
   </body>
 </html>
