@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>People Search</title>
   <link rel="stylesheet" href="/CSS/index.css">
   <style>
@@ -8,98 +9,109 @@
       font-family: 'Montserrat', sans-serif;
       text-align: center;
       background-color: #f0f0f0;
-    }
-
-    h1 {
-      margin-top: 40px;
-    }
-
-    #profiles {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
       padding: 20px;
     }
-
+    h1 {
+      margin-bottom: 20px;
+    }
+    #searchInput {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #profiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
     .profile-card {
       background: white;
       border-radius: 10px;
       padding: 15px;
-      width: 180px;
+      width: 150px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.2s;
+      text-align: center;
     }
-
     .profile-card:hover {
       transform: scale(1.05);
     }
-
     .profile-avatar {
-      width: 100%;
-      height: 180px;
+      width: 80px;
+      height: 80px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 50%;
+      margin-bottom: 10px;
     }
-
     .profile-username {
-      margin-top: 10px;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-    <h1>People Search</h1>
-  
-    <input type="text" id="searchInput" placeholder="Search usernames..." style="padding: 10px; width: 300px; font-size: 16px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc;">
-  
-    <div id="profiles">Loading...</div>
-  
-    <script>
-      const pastebinURL = "https://cors-anywhere.herokuapp.com/https://pastebin.com/raw/AsHTgxvc";
-      const profilesContainer = document.getElementById("profiles");
-      const searchInput = document.getElementById("searchInput");
-      let allUsers = [];
-  
-      fetch(pastebinURL)
-        .then(res => res.json())
-        .then(users => {
-          allUsers = users;
-          renderProfiles(allUsers);
-        })
-        .catch(err => {
-          console.error("Failed to load profiles:", err);
-          profilesContainer.textContent = "Failed to load profiles.";
-        });
-  
-      function renderProfiles(users) {
-        profilesContainer.innerHTML = "";
-  
-        if (!users.length) {
-          profilesContainer.textContent = "No profiles found.";
-          return;
-        }
-  
-        users.forEach(user => {
-          const card = document.createElement("div");
-          card.className = "profile-card";
-  
-          card.innerHTML = `
-            <img src="${user.avatar}" class="profile-avatar" alt="Avatar of ${user.username}">
-            <div class="profile-username">${user.username}</div>
-          `;
-  
-          profilesContainer.appendChild(card);
-        });
-      }
-  
-      searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        const filtered = allUsers.filter(user =>
-          user.username.toLowerCase().includes(query)
-        );
-        renderProfiles(filtered);
+  <h1>People Search</h1>
+  <input type="text" id="searchInput" placeholder="Search usernames…" />
+
+  <div id="profiles">Loading…</div>
+
+  <script>
+    // ——— Replace these two with YOUR values ———
+    const BIN_ID  = '680564d68561e97a5003d9aa';     // e.g. '660eacb9abcd12345'
+    const API_KEY = '$2a$10$lnp/QuPqy72v2YHWyJxXwORxjurP5yNBYqtnX8nKTldYH.EjiM8ni'; // from your JSONBin dashboard
+
+    const endpoint = `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`;
+    let allUsers = [];
+
+    const profilesEl = document.getElementById('profiles');
+    const searchEl   = document.getElementById('searchInput');
+
+    // Fetch from JSONBin
+    fetch(endpoint, {
+      headers: { 'X-Master-Key': API_KEY }
+    })
+      .then(r => {
+        if (!r.ok) throw new Error('Failed to fetch profiles');
+        return r.json();
+      })
+      .then(data => {
+        allUsers = data.record || [];
+        render(allUsers);
+      })
+      .catch(err => {
+        console.error(err);
+        profilesEl.textContent = 'Error loading profiles.';
       });
-    </script>
-</body>  
+
+    // Render a list of user cards
+    function render(users) {
+      profilesEl.innerHTML = '';
+      if (users.length === 0) {
+        profilesEl.textContent = 'No profiles found.';
+        return;
+      }
+      users.forEach(u => {
+        const card = document.createElement('div');
+        card.className = 'profile-card';
+        card.innerHTML = `
+          <img src="${u.avatar}" class="profile-avatar" alt="Avatar of ${u.username}">
+          <div class="profile-username">${u.username}</div>
+        `;
+        profilesEl.appendChild(card);
+      });
+    }
+
+    // Filter as you type
+    searchEl.addEventListener('input', () => {
+      const q = searchEl.value.toLowerCase();
+      const filtered = allUsers.filter(u =>
+        u.username.toLowerCase().includes(q)
+      );
+      render(filtered);
+    });
+  </script>
+</body>
 </html>
