@@ -1,21 +1,100 @@
-<div class="suggestion-wrapper">
-    <h2 class="dropdown-toggle">📝 Sign Up (Will Be Added Shortly) ▼</h2>
-    <div class="suggestion-box hidden">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegXTpkWdtC6mX933FPARUFhQnd_BwKTb6ZgH1u0OPdDPID0A/viewform?usp=header" 
-              width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">
-        Loading…
-      </iframe>
-    </div>
-</div>
-<script>
-const toggle = document.querySelector('.dropdown-toggle');
-const box = document.querySelector('.suggestion-box');
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Your Profile</title>
+  <link rel="stylesheet" href="CSS/index.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+      text-align: center;
+    }
 
-toggle.addEventListener('click', () => {
-    box.classList.toggle('hidden');
-    toggle.innerHTML = box.classList.contains('hidden')
-    ? '📝 Sign Up (Will Be Added Shortly) ▼'
-    : '📝 Sign Up (Will Be Added Shortly) ▲';
-});
-</script>
-<link rel="stylesheet" href="css/profile.css">
+    .form-container {
+      display: inline-block;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"], button {
+      display: block;
+      width: 300px;
+      margin: 15px auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Create Your Profile</h1>
+  <div class="form-container">
+    <form id="profileForm">
+      <input type="text" id="username" placeholder="Enter username" required />
+      <input type="text" id="avatar" placeholder="Paste avatar image URL" required />
+      <button type="submit">Create Profile</button>
+    </form>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("profileForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const avatar = document.getElementById("avatar").value.trim();
+
+      if (!username || !avatar) {
+        status.textContent = "Please fill in both fields.";
+        status.style.color = "red";
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/create-profile", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, avatar })
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          status.textContent = "Profile created successfully!";
+          status.style.color = "green";
+          form.reset();
+        } else {
+          status.textContent = result.error || "Failed to create profile.";
+          status.style.color = "red";
+        }
+      } catch (err) {
+        console.error(err);
+        status.textContent = "An error occurred.";
+        status.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
