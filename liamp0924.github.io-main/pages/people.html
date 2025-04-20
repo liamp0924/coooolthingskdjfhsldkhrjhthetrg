@@ -64,6 +64,26 @@
       font-weight: bold;
       color: #fff;
     }
+
+    .profile-card {
+    position: relative; /* allow absolute badge inside */
+    /* ...existing styles... */
+    }
+
+    /* The little owner badge */
+    .owner-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #f39c12;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    }
+
   </style>
 </head>
 <body>
@@ -76,6 +96,8 @@
     // ← Replace these with your JSONBin details:
     const BIN_ID  = '680564d68561e97a5003d9aa';     // e.g. '660eacb9abcd12345'
     const API_KEY = '$2a$10$lnp/QuPqy72v2YHWyJxXwORxjurP5yNBYqtnX8nKTldYH.EjiM8ni'; // from your JSONBin dashboard
+    const OWNER_USERNAME = 'Liam'; // ← replace with your exact username
+
 
     const endpoint = `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`;
     let allUsers = [];
@@ -102,21 +124,31 @@
 
     // Render user cards into #profiles
     function render(users) {
-      profilesEl.innerHTML = '';
-      if (users.length === 0) {
-        profilesEl.textContent = 'No profiles found.';
-        return;
-      }
-      users.forEach(u => {
-        const card = document.createElement('div');
-        card.className = 'profile-card';
-        card.innerHTML = `
-          <img src="${u.avatar}" class="profile-avatar" alt="Avatar of ${u.username}">
-          <div class="profile-username">${u.username}</div>
-        `;
-        profilesEl.appendChild(card);
-      });
-    }
+        profilesEl.innerHTML = '';
+        if (users.length === 0) {
+            profilesEl.textContent = 'No profiles found.';
+            return;
+        }
+        users.forEach(u => {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+
+            // Build inner HTML
+            let inner = `
+            <img src="${u.avatar}" class="profile-avatar" alt="Avatar of ${u.username}">
+            <div class="profile-username">${u.username}</div>
+            `;
+
+            // If this is the owner, prepend a badge
+            if (u.username === OWNER_USERNAME) {
+            inner = `<div class="owner-badge">Owner</div>` + inner;
+            }
+
+            card.innerHTML = inner;
+            profilesEl.appendChild(card);
+        });
+        }
+
 
     // Filter as you type
     searchEl.addEventListener('input', () => {
