@@ -1,29 +1,21 @@
-<h2>Create Your Profile</h2>
-<form id="profile-form">
-  <input type="text" id="username" placeholder="Username" required><br><br>
-  <input type="url" id="avatar" placeholder="Avatar Image URL" required><br><br>
-  <button type="submit">Save</button>
-</form>
-
-<p id="status"></p>
-
+<div class="suggestion-wrapper">
+    <h2 class="dropdown-toggle">📝 Sign Up (Will Be Added Shortly) ▼</h2>
+    <div class="suggestion-box hidden">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegXTpkWdtC6mX933FPARUFhQnd_BwKTb6ZgH1u0OPdDPID0A/viewform?usp=header" 
+              width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">
+        Loading…
+      </iframe>
+    </div>
+</div>
 <script>
-  document.getElementById('profile-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
+const toggle = document.querySelector('.dropdown-toggle');
+const box = document.querySelector('.suggestion-box');
 
-    const username = document.getElementById('username').value;
-    const avatar = document.getElementById('avatar').value;
-
-    const res = await fetch('/api/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, avatar })
-    });
-
-    if (res.ok) {
-      document.getElementById('status').textContent = 'Profile saved!';
-    } else {
-      document.getElementById('status').textContent = 'Error saving profile.';
-    }
-  });
+toggle.addEventListener('click', () => {
+    box.classList.toggle('hidden');
+    toggle.innerHTML = box.classList.contains('hidden')
+    ? '📝 Sign Up (Will Be Added Shortly) ▼'
+    : '📝 Sign Up (Will Be Added Shortly) ▲';
+});
 </script>
+<link rel="stylesheet" href="css/profile.css">
