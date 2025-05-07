@@ -1,107 +1,159 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <p class="footer-top">Version 2.0, Made By Liam P. (help coding this is torture)</p>
-    <meta charset="UTF-8" />
-    <title>IUG V5</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IUG V5</title>
 
-    <link rel="stylesheet" href="CSS/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="CSS/index.css">
 
-    <script src="/uv/uv.bundle.js"></script>
-    <script src="/uv/uv.config.js"></script>
+  <!-- Google Fonts (preload if you self-host later) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
 
-    <script>
-      fetch("components/nav.html")
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById("navbar-placeholder").innerHTML = data;
-        });
-    </script>
-  </head>
+  <!-- Inline navbar styles (you can move these into index.css if you like) -->
+  <style>
+    .navbar {
+      background: #2e7d32;
+      padding: 12px 0;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 16px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+    .navbar a:hover {
+      color: #a5d6a7;
+      transform: scale(1.05);
+    }
+    .profile-actions {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .profile-actions .profile-btn {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 12px 20px;
+      background: #2f2f2f;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .profile-actions .profile-btn:hover {
+      background: #444;
+    }
+  </style>
 
-  <body>
-    <header>
-      <h1 style="text-align: center;">IUG V5</h1>
-    </header>
-    <br> <br> <br>
+  <!-- Defer non-critical scripts -->
+  <script src="/uv/uv.bundle.js" defer></script>
+  <script src="/uv/uv.config.js" defer></script>
+</head>
 
-    <div id="navbar-placeholder"></div>
+<body>
+  <!-- Top footer -->
+  <p class="footer-top">Version 2.0, Made By Liam P. (help coding this is torture)</p>
 
-    <section style="text-align: center;">
-      <h2>This website is</h2>
-      <h2 id="red">ALMOST DONE,</h2>
-      <h2>don't think this website will be fully finished in a day, I'm manually coding this so it will take a long time.</h2>
-    </section>
+  <!-- Site Header -->
+  <header><h1 style="text-align:center;">IUG V5</h1></header>
 
-    <div class="profile-actions">
-      <h2>👥 Community</h2>
-      <a href="/pages/profile.html" class="profile-btn">Create Your Profile</a>
-      <a href="/pages/people.html" class="profile-btn">Search People</a>
-    </div>
-    
+  <!-- Inlined Navbar -->
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/gameselect.html">Games</a>
+    <a href="/Apps.html">Apps</a>
+    <a href="/History/history.html">History</a>
+    <a href="/changelog.html">Change Log</a>
+    <a href="/pages/profile.html">Create Profile</a>
+    <a href="/pages/people.html">People Search</a>
+  </nav>
 
+  <!-- Intro Section -->
+  <section style="text-align:center; margin:40px 0;">
+    <h2>This website is</h2>
+    <h2 id="red">ALMOST DONE,</h2>
+    <h2>don’t think this website will be fully finished in a day, I'm manually coding this so it will take a long time.</h2>
+  </section>
 
-    <div id="favorite-section">
-      <h2>⭐ Your Favorite Games</h2>
-      <div id="favorite-list"></div>
-    </div>
+  <!-- Community Actions -->
+  <div class="profile-actions">
+    <h2>👥 Community</h2>
+    <a href="/pages/profile.html" class="profile-btn">Create Your Profile</a>
+    <a href="/pages/people.html" class="profile-btn">Search People</a>
+  </div>
 
+  <!-- Favorites Section -->
+  <div id="favorite-section">
+    <h2>⭐ Your Favorite Games</h2>
+    <div id="favorite-list"></div>
+  </div>
 
+  <!-- Suggestion Box (lazy-loaded iframe) -->
+  <div class="suggestion-wrapper" style="text-align:center; margin:40px 40px;">
+    <h2 id="suggest-toggle" style="cursor:pointer; display:inline-block; background:#2e7d32; color:#fff; padding:10px 20px; border-radius:6px;">
+      📬 Suggest a Game! ▼
+    </h2>
+    <div id="suggest-box" class="hidden" style="margin-top:20px;"></div>
+  </div>
 
-    <div class="suggestion-wrapper">
-      <h2 class="dropdown-toggle">📬 Suggest a Game! ▼</h2>
-      <div class="suggestion-box hidden">
-        <iframe src="https://forms.gle/DWEHKdHtzUw9jyoF8" 
-                width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">
+  <!-- Bottom Footer (fixed) -->
+  <p class="footer" style="position:fixed; bottom:0; left:0; width:100%; background:#222; color:#fff; text-align:center; padding:10px;">
+    Version 2.0, Made By Liam P.
+  </p>
+
+  <!-- Scripts -->
+  <script>
+    // Lazy-load the suggestion iframe on first click
+    const toggle = document.getElementById('suggest-toggle');
+    const box    = document.getElementById('suggest-box');
+    toggle.addEventListener('click', () => {
+      if (!box.innerHTML) {
+        box.innerHTML = `<iframe
+          src="https://forms.gle/DWEHKdHtzUw9jyoF8"
+          width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">
           Loading…
-        </iframe>
-      </div>
-    </div>
-    <script>
-      const toggle = document.querySelector('.dropdown-toggle');
-      const box = document.querySelector('.suggestion-box');
-    
-      toggle.addEventListener('click', () => {
-        box.classList.toggle('hidden');
-        toggle.innerHTML = box.classList.contains('hidden')
-          ? '📬 Suggest a Game! ▼'
-          : '📬 Suggest a Game! ▲';
-      });
-    </script>
-    <script>
-      function loadFavorites() {
-        const favoriteGames = JSON.parse(localStorage.getItem('favorites') || '[]');
-        const favList = document.getElementById('favorite-list');
-    
-        if (favoriteGames.length === 0) {
-          favList.innerHTML = "<p>You haven't starred any games yet.</p>";
-        } else {
-          favList.innerHTML = favoriteGames.map((game, index) => `
-            <div class="fav-game-card" data-index="${index}">
-              <button class="remove-fav">❌</button>
-              <h4>${game.name}</h4>
-              <a href="${game.link}" class="play-btn">Play</a>
-            </div>
-          `).join('');
-    
-          // Add event listeners to remove buttons
-          document.querySelectorAll('.remove-fav').forEach(btn => {
-            btn.addEventListener('click', () => {
-              const index = btn.closest('.fav-game-card').dataset.index;
-              const current = JSON.parse(localStorage.getItem('favorites') || '[]');
-              current.splice(index, 1);
-              localStorage.setItem('favorites', JSON.stringify(current));
-              loadFavorites(); // Re-render
-            });
-          });
-        }
+        </iframe>`;
       }
-    
-      // Initial load
-      loadFavorites();
-    </script>    
-  </body>
+      box.classList.toggle('hidden');
+      toggle.textContent = box.classList.contains('hidden')
+        ? '📬 Suggest a Game! ▼'
+        : '📬 Suggest a Game! ▲';
+    });
+
+    // Your existing favorites loader
+    function loadFavorites() {
+      const favoriteGames = JSON.parse(localStorage.getItem('favorites') || '[]');
+      const favList = document.getElementById('favorite-list');
+      if (favoriteGames.length === 0) {
+        favList.innerHTML = "<p>You haven't starred any games yet.</p>";
+      } else {
+        favList.innerHTML = favoriteGames.map((game, index) => `
+          <div class="fav-game-card" data-index="${index}">
+            <button class="remove-fav">❌</button>
+            <h4>${game.name}</h4>
+            <a href="${game.link}" class="play-btn">Play</a>
+          </div>
+        `).join('');
+        document.querySelectorAll('.remove-fav').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = btn.closest('.fav-game-card').dataset.index;
+            const cur = JSON.parse(localStorage.getItem('favorites') || '[]');
+            cur.splice(idx, 1);
+            localStorage.setItem('favorites', JSON.stringify(cur));
+            loadFavorites();
+          });
+        });
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadFavorites);
+  </script>
+</body>
 </html>
